@@ -1,7 +1,5 @@
 class EventsController < ApplicationController
-  rescue_from ActiveRecord::RecordNotFound, with: :render_record_not_found
-  rescue_from ActiveRecord::RecordInvalid, with: :render_record_invalid
-  
+
   def index
     render json: Event.all
   end
@@ -10,18 +8,26 @@ class EventsController < ApplicationController
     render json: find_event
   end
 
+  def update
+    event = find_event
+    event.update(
+      location:params[:location],
+      venue:params[:venue],
+      date:params[:date]
+    )
+    event.to_json
+  end
+
+  def destroy
+    event = find_event
+    event.destroy
+    event.to_json
+  end
+
   private
 
   def find_event
     Event.find(params[:id])
-  end
-
-  def render_record_not_found
-    render json: { error: "Event not found"}, status: :not_found
-  end
-
-  def render_record_invalid(exception)
-    render json: {errors: exception.record.errors.full_messages}, status: :unprocessable_entity
   end
 
 end

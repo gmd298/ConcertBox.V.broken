@@ -1,35 +1,35 @@
-import React, {useState} from "react";
+import React from "react";
 
-function MusicianCard({musician}) {
+function MusicianCard() {
 
-  const [favorite, setFavorite] = useState(false)
+  // const [favorite, setFavorite] = useState(false)
 
-  const handleClick = () => {
-    setFavorite(!favorite)
-  }
+  // const handleClick = () => {
+  //   setFavorite(!favorite)
+  // }
 
-  const handleDelete = () => {
-    fetch(`http://localhost:3000/musicians/${musician.id}`, {
-      method: 'DELETE',
-    })
+  // const handleDelete = () => {
+  //   fetch(`http://localhost:3000/musicians/${musician.id}`, {
+  //     method: 'DELETE',
+  //   })
+  // }
+
+  const onClick = (e) => {
+    e.preventDefault();
+    
+    // if (addPart) {
+    //   addPart(part);
+    // } else if (removePart) {
+    //   removePart(part);
+    // }
   }
 
   return (
-    <li className="card">
-      <div className="image">
-        <span className="price">$0</span>
-        <img src={musician.image} alt={musician.name} />
+      <div className="musician-card" onClick={onClick}>
+        <p><strong>Name: </strong></p>
+        <p>{/* image */}</p>
+        <p><strong>{/* Like Button */}</strong></p>
       </div>
-      <div className="details">
-        {favorite ? (
-          <button onClick={handleClick} className="emoji-button favorite active">★</button>
-        ) : (
-          <button onClick={handleClick} className="emoji-button favorite">☆</button>
-        )}
-        <strong>{musician.name}</strong>
-        <button onClick={handleDelete} className="emoji-button delete">🗑</button>
-      </div>
-    </li>
   );
 }
 

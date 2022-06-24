@@ -1,7 +1,28 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
-#   Character.create(name: "Luke", movie: movies.first)
+require 'faker'
+
+musician1 = Musician.create(name: Faker::Music.band)
+musician2 = Musician.create(name: Faker::Music.band)
+musician3 = Musician.create(name: Faker::Music.band)
+musician4 = Musician.create(name: Faker::Music.band)
+musician5 = Musician.create(name: Faker::Music.band)
+musician6 = Musician.create(name: Faker::Music.band)
+musician7 = Musician.create(name: Faker::Music.band)
+musician8 = Musician.create(name: Faker::Music.band)
+
+event1 = Event.create(location: Faker::Nation.capital_city, venue: Faker::App.name, date: Faker::Date.in_date_period)
+event2 = Event.create(location: Faker::Nation.capital_city, venue: Faker::App.name, date: Faker::Date.in_date_period)
+event3 = Event.create(location: Faker::Nation.capital_city, venue: Faker::App.name, date: Faker::Date.in_date_period)
+event4 = Event.create(location: Faker::Nation.capital_city, venue: Faker::App.name, date: Faker::Date.in_date_period)
+event5 = Event.create(location: Faker::Nation.capital_city, venue: Faker::App.name, date: Faker::Date.in_date_period)
+event6 = Event.create(location: Faker::Nation.capital_city, venue: Faker::App.name, date: Faker::Date.in_date_period)
+event7 = Event.create(location: Faker::Nation.capital_city, venue: Faker::App.name, date: Faker::Date.in_date_period)
+event8 = Event.create(location: Faker::Nation.capital_city, venue: Faker::App.name, date: Faker::Date.in_date_period)
+
+user1 = User.create(name: Faker::Name.name, username: Faker::App.name)
+user2 = User.create(name: Faker::Name.name, username: Faker::App.name)
+user3 = User.create(name: Faker::Name.name, username: Faker::App.name)
+user4 = User.create(name: Faker::Name.name, username: Faker::App.name)
+user5 = User.create(name: Faker::Name.name, username: Faker::App.name)
+user6 = User.create(name: Faker::Name.name, username: Faker::App.name)
+user7 = User.create(name: Faker::Name.name, username: Faker::App.name)
+user8 = User.create(name: Faker::Name.name, username: Faker::App.name)

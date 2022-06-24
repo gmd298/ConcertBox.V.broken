@@ -1,27 +1,30 @@
 class UsersController < ApplicationController
-  rescue_from ActiveRecord::RecordNotFound, with: :render_record_not_found
-  rescue_from ActiveRecord::RecordInvalid, with: :render_record_invalid
+  skip_before_action :authorize, only: :create
 
-  def index
-    render json: User.all
+  def create
+    user = User.create!(user_params)
+    session[:user_id] = user.id
+    render json: user, status: :created
   end
 
   def show
-    render json: find_user
+    user = User.find_by(id: session[:user_id])
+    render json: user
+  end
+
+  def user_events
+    event = User.find_by(id: session[:user_id])
+    render json: event, each_serializer: UserEventsSerializer
   end
 
   private
 
+  def user_params
+    params.permit(:username, :password, :password_confirmation)
+  end
+
   def find_user
     User.find(params[:id])
-  end
-
-  def render_record_not_found
-    render json: { error: "User not found"}, status: :not_found
-  end
-
-  def render_record_invalid(exception)
-    render json: {errors: exception.record.errors.full_messages}, status: :unprocessable_entity
   end
 
 end
